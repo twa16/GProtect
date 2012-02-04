@@ -25,9 +25,7 @@
 package com.manuwebdev.gprotect;
 
 import java.util.logging.Logger;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -41,9 +39,15 @@ public class GProtect extends JavaPlugin{
 static final Logger log = Logger.getLogger("Minecraft");
 
 /**
+ * Color for all messages
+ */
+public static final ChatColor MessageColor=ChatColor.DARK_AQUA;
+
+
+/**
  * Name of plugin
  */
- private final String PLUGIN_NAME="GProtect";
+ public static final String PLUGIN_NAME="GProtect";
 
     @Override
     public void onDisable() {

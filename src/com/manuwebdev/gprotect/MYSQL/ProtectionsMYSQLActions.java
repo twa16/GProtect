@@ -1,16 +1,33 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2012 Manuel Gauto.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.manuwebdev.gprotect.MYSQL;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.manuwebdev.gprotect.Protection;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bukkit.block.Block;
 
 /**
  * Provides queries for MYSQL
@@ -42,6 +59,28 @@ public class ProtectionsMYSQLActions {
         this.conn=mysqlInterface.getMYSQLConnection();
     }    
     
+    public Protection getProtection(Block b){
+        
+    } 
+    
+    public void addProtection(Protection p){
+        //Statement
+        final String QUERY = "INSERT INTO" + TABLE_NAME + " VALUES()";
+        try {
+           //Get the statement
+            PreparedStatement ps = (PreparedStatement) mysqlInterface.getMYSQLConnection().prepareStatement(QUERY);
+            //set platyername as part of query
+            ps.setString(1, playerName);
+            //Get results
+            ResultSet rs = ps.executeQuery();
+            //Return if ResultSet is null
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsersMYSQLActions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     public boolean doesTableExist(String Table) {
         try {
             DatabaseMetaData dbm = mysqlInterface.getMYSQLConnection().getMetaData();
@@ -66,8 +105,9 @@ public class ProtectionsMYSQLActions {
                 Statement stmt = mysqlInterface.getMYSQLConnection().createStatement();
 
                 String sql = "CREATE TABLE " + TABLE_NAME + "("
-                        + "OWNER             VARCHAR(254), "
-                        + "NAME              VARCHAR(254), "
+                        + "OWNER             VARCHAR(16), "
+                        + "NAME              VARCHAR(50), "
+                        + "ALLOWED           VARCHAR(254), "
                         + "X                 INTEGER, "
                         + "Y                 INTEGER, "
                         + "Z                 INTEGER, "

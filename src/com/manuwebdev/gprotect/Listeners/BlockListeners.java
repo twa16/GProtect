@@ -25,15 +25,15 @@ package com.manuwebdev.gprotect.Listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.block.BlockBreakEvent;
 
 /**
  *
  * @author Manuel Gauto
  */
-public class UserListeners implements Listener{
+public class BlockListeners implements Listener{
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
+    public void onBlockBreak(BlockBreakEvent event){
         
     }
 }

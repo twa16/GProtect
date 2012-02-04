@@ -21,19 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.manuwebdev.gprotect.Listeners;
+package com.manuwebdev.gprotect.Cache;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.Chunk;
 
 /**
  *
  * @author Manuel Gauto
  */
-public class UserListeners implements Listener{
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
+public class CacheManager {
+    Chunk c;
+    public CacheManager(){
         
     }
 }
