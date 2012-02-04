@@ -24,6 +24,7 @@
 
 package com.manuwebdev.gprotect.Commands;
 
+import com.manuwebdev.gprotect.GProtect;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,9 +36,29 @@ import org.bukkit.entity.Player;
  * @author Manuel Gauto 
  */
 public class GProtectCommandExecutor implements CommandExecutor{
-
+    /**
+     * Plugin reference
+     */
+    GProtect plugin;
+    
+    /**
+     * Default
+     * @param plugin Plugin reference
+     */
+    public GProtectCommandExecutor(GProtect plugin){
+        this.plugin=plugin;
+    }
+    
+    /**
+     * Triggered when command is recieved
+     * @param sender
+     * @param cmd
+     * @param string
+     * @param strings
+     * @return 
+     */
     @Override
-    public boolean onCommand(CommandSender sender, Command cmnd, String string, String[] strings) {
+    public boolean onCommand(CommandSender sender, Command cmd, String string, String[] strings) {
         Player player = null;
 
         //Check if the sender is a player of the console
@@ -45,14 +66,14 @@ public class GProtectCommandExecutor implements CommandExecutor{
             player = (Player) sender;
         }
 
-        if (cmd.getName().equalsIgnoreCase(INSERT COMMAND)) {
+        if (cmd.getName().equalsIgnoreCase(CommandList.TOGGLE_COMMAND)) {
             //Console sent command
             if (player == null) {
                 sender.sendMessage("This command can only be run by a player");
             }
             
             //Player sent command
-            if (player.hasPermission(PERMISSION) || player.isOp()) {
+            if (player.hasPermission(CommandList.TOGGLE_COMMAND_PERMISSION) || player.isOp()) {
                 //TODO what command does
             }
             return true;
